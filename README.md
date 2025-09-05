@@ -1,10 +1,15 @@
-# Download Episodes Naruto Shippuden
+# Download Episódios Naruto Shippuden Dublado PT-BR
 
-Este projeto tem como objetivo automatizar o download dos episódios do anime Naruto Shippuden.
+Este projeto tem como objetivo automatizar o download dos episódios do anime Naruto Shippuden totalmente dublado em português brasileiro, completo do episódio 001 ao 500. 
+
+⚠️ **Nota importante**: O arquivo `episodes.json` não está completo com todos os episódios. Basta você adicionar os episódios que faltam e seja feliz!
 
 ## Funcionalidades
-- Leitura de uma lista de episódios a partir de um arquivo JSON (`episodes.json`)
-- Download automático dos episódios listados
+- ✅ Download automático dos episódios dublados em PT-BR
+- ✅ Leitura de uma lista de episódios a partir do arquivo JSON (`episodes.json`)
+- ✅ Conversão automática de streams HLS (.m3u8) para arquivos MP4
+- ✅ Compatível com media servers como Jellyfin, Plex, etc.
+- ✅ Organização automática por temporadas
 
 ## Como usar
 1. Clone o repositório:
@@ -27,7 +32,18 @@ Este projeto tem como objetivo automatizar o download dos episódios do anime Na
 
 ## Estrutura do Projeto
 - `index.py`: Script principal para download dos episódios
-- `episodes.json`: Lista dos episódios a serem baixados
+- `episodes.json`: Lista dos episódios a serem baixados (pode ser expandida)
+- `requirements.txt`: Dependências Python do projeto
+- `.env`: Arquivo de configuração (se necessário)
+
+## Como adicionar mais episódios
+Para adicionar episódios que não estão no `episodes.json`, basta seguir o padrão:
+```json
+{
+  "Episode": 501,
+  "Title": "Naruto Shippuden - S21E501 - Título do Episódio"
+}
+```
 
 ## Requisitos
 - Python 3.x
