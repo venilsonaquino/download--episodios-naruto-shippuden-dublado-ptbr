@@ -31,6 +31,11 @@ Este projeto tem como objetivo automatizar o download dos episódios do anime Na
 
 ## Requisitos
 - Python 3.x
-- 
+- ffmpeg (para download dos vídeos HLS)
+
+### Instalação do ffmpeg
+```zsh
+sudo apt update && sudo apt install -y ffmpeg
+```
 ## Licença
 Este projeto é apenas para fins educacionais.
