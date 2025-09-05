@@ -9,7 +9,7 @@ Este projeto tem como objetivo automatizar o download dos episódios do anime Na
 - ✅ Leitura de uma lista de episódios a partir do arquivo JSON (`episodes.json`)
 - ✅ Conversão automática de streams HLS (.m3u8) para arquivos MP4
 - ✅ Compatível com media servers como Jellyfin, Plex, etc.
-- ✅ Organização automática por temporadas
+- ✅ Organização automática por temporadas (baseada no [TheMovieDB](https://www.themoviedb.org/tv/31910))
 
 ## Como usar
 1. Clone o repositório:
