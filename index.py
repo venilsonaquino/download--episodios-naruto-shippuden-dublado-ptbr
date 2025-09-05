@@ -1,28 +1,40 @@
 import requests
 import json
 import os
+import subprocess
 
-def download_file(url: str, file_name: str, chunk_size: int = 1024*1024):
+def download_video_with_ffmpeg(url: str, file_name: str):
     """
-    Faz o download de um arquivo grande por stream.
-    :param url: URL do arquivo para download
+    Faz o download de um vídeo a partir de uma URL m3u8 usando ffmpeg.
+    :param url: URL do arquivo m3u8 para download
     :param file_name: Nome do arquivo de saída
-    :param chunk_size: Tamanho de cada bloco em bytes (padrão: 1MB)
     """
-    with requests.get(url, stream=True) as response:
-        response.raise_for_status()
-        total = int(response.headers.get("content-length", 0))
-        downloaded = 0
-
-        with open(file_name, "wb") as file:
-            for chunk in response.iter_content(chunk_size=chunk_size):
-                if chunk:  # ignora keep-alive
-                    file.write(chunk)
-                    downloaded += len(chunk)
-                    # Exibe progresso simples
-                    print(f"\rBaixado {downloaded/1024/1024:.2f} MB de {total/1024/1024:.2f} MB", end="")
-
-    print(f"\n✅ Download concluído: {file_name}")
+    print(f"Iniciando download com ffmpeg: {file_name}")
+    
+    try:
+        # Comando ffmpeg para baixar vídeo HLS
+        cmd = [
+            'ffmpeg',
+            '-i', url,
+            '-c', 'copy',
+            '-bsf:a', 'aac_adtstoasc',
+            '-y',  # sobrescrever arquivo se existir
+            file_name
+        ]
+        
+        # Executa o comando e captura saída
+        result = subprocess.run(cmd, capture_output=True, text=True)
+        
+        if result.returncode == 0:
+            print(f"✅ Download concluído: {file_name}")
+        else:
+            print(f"❌ Erro no download: {file_name}")
+            print(f"Erro: {result.stderr}")
+            
+    except FileNotFoundError:
+        print("❌ ffmpeg não encontrado. Instale o ffmpeg para usar este script.")
+    except Exception as e:
+        print(f"❌ Erro inesperado: {e}")
 
 def main():
     # Carrega o JSON
@@ -46,7 +58,7 @@ def main():
             url = f"{base_url}{ep_num}.mp4/index.m3u8"
             file_name = os.path.join(folder_path, f"{title}.mp4")
             print(f"\nIniciando download: {title}")
-            download_file(url, file_name)
+            download_video_with_ffmpeg(url, file_name)
 
 if __name__ == "__main__":
     main()
