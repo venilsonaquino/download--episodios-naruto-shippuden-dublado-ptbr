@@ -34,7 +34,6 @@ Este projeto tem como objetivo automatizar o download dos episódios do anime Na
 - `index.py`: Script principal para download dos episódios
 - `episodes.json`: Lista dos episódios a serem baixados (pode ser expandida)
 - `requirements.txt`: Dependências Python do projeto
-- `.env`: Arquivo de configuração (se necessário)
 
 ## Como adicionar mais episódios
 Para adicionar episódios que não estão no `episodes.json`, basta seguir o padrão:
